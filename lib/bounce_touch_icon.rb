@@ -7,7 +7,7 @@ module BounceTouchIcon
     end
 
     def call(env)
-      if touch_icon_path? env["PATH_INFO"]
+      if env["PATH_INFO"] == "/favicon.ico" || touch_icon_path?(env["PATH_INFO"])
         [404, {"Content-Type" => "text/html", "Content-Length" => "0"}, []]
       else
         @app.call(env)
